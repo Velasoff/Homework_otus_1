@@ -1,0 +1,10 @@
+# main
+fastapi>=0.76.0
+uvicorn
+pyjwt
+
+# DB
+alembic
+psycopg2-binary
+sqlalchemy
+asyncpg

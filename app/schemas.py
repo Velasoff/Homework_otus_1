@@ -1,7 +1,8 @@
 import datetime
 from enum import Enum
 
-from pydantic import BaseModel
+from fastapi import HTTPException
+from pydantic import BaseModel, ValidationError
 
 
 class SexEnum(str, Enum):
@@ -10,6 +11,12 @@ class SexEnum(str, Enum):
 
 
 class BaseSchema(BaseModel):
+    def __init__(self, *args, **kwargs):
+        try:
+            super().__init__(*args, **kwargs)
+        except ValidationError:
+            raise HTTPException(status_code=400, detail="Невалидные данные")
+
     class Config:
         orm_mode = True
 

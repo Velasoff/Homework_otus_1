@@ -13,7 +13,7 @@ services:
     depends_on:
       - db
     command:
-      ['sleep', '100000']
+      ['start', '8000']
 
   db:
     image: postgres:13

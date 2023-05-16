@@ -35,7 +35,7 @@ class UserSchema(BaseUserSchema):
     id: int
 
 
-class UserRegisterSchema(UserSchema):
+class UserRegisterSchema(BaseUserSchema):
     password: str
 
 

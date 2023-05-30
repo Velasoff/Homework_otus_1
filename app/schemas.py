@@ -11,11 +11,11 @@ class SexEnum(str, Enum):
 
 
 class BaseSchema(BaseModel):
-    def __init__(self, *args, **kwargs):
-        try:
-            super().__init__(*args, **kwargs)
-        except ValidationError:
-            raise HTTPException(status_code=400, detail="Невалидные данные")
+    # def __init__(self, *args, **kwargs):
+    #     try:
+    #         super().__init__(*args, **kwargs)
+    #     except ValidationError:
+    #         raise HTTPException(status_code=400, detail="Невалидные данные")
 
     class Config:
         orm_mode = True
@@ -46,3 +46,7 @@ class LoginSchema(BaseModel):
 
 class TokenSchema(BaseSchema):
     token: str | None
+
+
+class ListUserSchema(BaseSchema):
+    items: list[UserSchema]

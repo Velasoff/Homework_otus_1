@@ -2,9 +2,14 @@
 fastapi>=0.76.0
 uvicorn
 pyjwt
+requests
 
 # DB
 alembic
 psycopg2-binary
 sqlalchemy
 asyncpg
+
+# Linters
+isort
+black

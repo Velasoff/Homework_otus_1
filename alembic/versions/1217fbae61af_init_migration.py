@@ -5,19 +5,20 @@ Revises:
 Create Date: 2023-05-14 13:00:34.006081
 
 """
-from alembic import op
 import sqlalchemy as sa
 
+from alembic import op
 
 # revision identifiers, used by Alembic.
-revision = '1217fbae61af'
+revision = "1217fbae61af"
 down_revision = None
 branch_labels = None
 depends_on = None
 
 
 def upgrade() -> None:
-    op.execute("""
+    op.execute(
+        """
         CREATE TABLE IF NOT EXISTS users(
             id SERIAL PRIMARY KEY,
             password VARCHAR(100) NOT NULL,
@@ -29,7 +30,8 @@ def upgrade() -> None:
             biography TEXT,
             city VARCHAR(100)
         );
-    """)
+    """
+    )
 
 
 def downgrade() -> None:

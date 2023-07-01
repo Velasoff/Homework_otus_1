@@ -3,8 +3,10 @@ from typing import Any
 
 from fastapi import APIRouter, HTTPException
 
-from app.crud.auth import get_token, get_user, register_user, search_user_by_names
-from app.schemas import ListUserSchema, LoginSchema, TokenSchema, UserRegisterSchema, UserSchema
+from app.crud.auth import (get_token, get_user, register_user,
+                           search_user_by_names)
+from app.schemas import (ListUserSchema, LoginSchema, TokenSchema,
+                         UserRegisterSchema, UserSchema)
 
 logger = logging.getLogger(__name__)
 router = APIRouter()

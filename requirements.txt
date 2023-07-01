@@ -1,8 +1,10 @@
 # main
 fastapi>=0.76.0
+gunicorn
 uvicorn
 pyjwt
 requests
+uvloop
 
 # DB
 alembic

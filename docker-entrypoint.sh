@@ -12,7 +12,7 @@ case "$1" in
         ;;
     start)
         alembic upgrade head
-        uvicorn app.server:app --host 0.0.0.0 --port $PORT --reload
+        gunicorn app.server:app -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000 --workers=5
         ;;
     *)
         exec "$@"

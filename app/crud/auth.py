@@ -5,7 +5,8 @@ from fastapi import HTTPException
 from sqlalchemy import text
 
 from app.db import engine
-from app.schemas import ListUserSchema, TokenSchema, UserRegisterSchema, UserSchema
+from app.schemas import (ListUserSchema, TokenSchema, UserRegisterSchema,
+                         UserSchema)
 
 
 def get_token(id: int, password: str) -> TokenSchema | None:
@@ -61,7 +62,20 @@ def get_user(user_id: int) -> UserSchema:
 
 def search_user_by_names(first_name: str, last_name: str) -> ListUserSchema:
     query = text(
-        "SELECT id, first_name, second_name, birthday, age, sex, biography, city FROM users WHERE first_name LIKE :first_name AND second_name LIKE :second_name"
+        """
+        SELECT id,
+               first_name,
+               second_name,
+               birthday,
+               age,
+               sex,
+               biography,
+               city
+        FROM users
+        WHERE first_name LIKE '%' || :first_name || '%'
+          AND second_name LIKE '%' || :second_name || '%'
+        ORDER BY id
+        """
     )
     with engine.connect() as conn:
         result = conn.execute(query, {"first_name": first_name, "second_name": last_name})
